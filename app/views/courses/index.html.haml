@@ -1,0 +1,25 @@
+%h1 Courses
+= link_to 'New Course', new_course_path, class: 'btn btn-primary mb-2'
+%table.table.table-bordered.table-hover
+  %thead.thead-dark
+    %tr
+      %th Code
+      %th Name
+      %th Semester
+      %th Catalog data
+      %th User
+      %th{:colspan => "5"}
+  %tbody
+    - @courses.each do |course|
+      %tr
+        %td= course.code
+        %td= course.name
+        %td= course.semester
+        %td= course.catalog_data
+        %td= course.user_id
+        %td= link_to 'Show', course
+        %td= link_to 'Edit', edit_course_path(course)
+        %td= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Add Assessment', add_assessment_path(course)
+        %td= link_to 'View Students', enrolled_students_path(course)
+%br/

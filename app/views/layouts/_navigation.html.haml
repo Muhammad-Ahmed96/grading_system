@@ -1,0 +1,20 @@
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
+  =link_to 'Grading System', main_page_path, class: 'navbar-brand'
+  %button.navbar-toggler{"aria-controls" => "navbarTogglerDemo02", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarTogglerDemo02", "data-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+  #navbarTogglerDemo02.collapse.navbar-collapse
+    %ul.navbar-nav.mr-auto.mt-2.mt-lg-0
+      -if user_signed_in? and current_user.user_type == 'instructor'
+        %li.nav-item.active
+          =link_to 'Courses', courses_path, class: 'nav-link'
+        %li.nav-item.active
+          =link_to 'Students', users_path, class: 'nav-link'
+    %ul.navbar-nav.mt-2.mt-lg-0
+      -if current_user.present?
+        %li.nav-item.active
+          =link_to 'Account', edit_user_registration_path, class: 'nav-link'
+        %li.nav-item.active
+          =link_to 'Logout', destroy_user_session_path , method: :delete, class: 'nav-link'
+      -else
+        %li.nav-item.active
+          =link_to 'Login', new_user_session_path, class: 'nav-link'

@@ -1,0 +1,8 @@
+.row
+  .col-lg-4.offset-lg-4
+    .card.card-default
+      .card-header.text-center
+        %h2 Edit Student
+      .card-body
+        = form_for(@user) do |f|
+          =render 'form', f:f

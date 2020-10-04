@@ -1,0 +1,13 @@
+%p#notice= notice
+%p
+  %strong Name:
+  = @assessment.name
+%p
+  %strong Weight:
+  = @assessment.weight
+%p
+  %strong Course:
+  = @assessment.course_id
+= link_to 'Edit', edit_assessment_path(@assessment)
+|
+= link_to 'Back', assessments_path

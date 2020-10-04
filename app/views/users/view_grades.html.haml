@@ -1,0 +1,17 @@
+
+
+.row
+  .col-lg-4.offset-lg-4
+    .card.card-default
+      .card-header
+        %h1.text-center Grades
+      .card-body
+        =form_for :q, url: save_grades_path  do |f|
+          -@as_grades.each do |as|
+            .form-group
+            =f.label as.assessment.name
+            =f.number_field "grades[#{as.assessment.id}]", value: as.grade, class: 'form-control', min:1, max: 120, required: true
+          =f.hidden_field 'assessment[user_id]', value: @user.id
+          =f.hidden_field 'assessment[course_id]', value: @course.id
+          .form-group
+          =f.submit 'Save', class: 'btn btn-primary'

@@ -1,0 +1,25 @@
+
+= form_with(model: course, local: true) do |form|
+  =form.hidden_field :user_id, value: current_user.id
+  - if course.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(course.errors.count, "error")
+        prohibited this course from being saved:
+      %ul
+        - course.errors.full_messages.each do |message|
+          %li= message
+  .form-group
+    = form.label :code
+    = form.text_field :code, class: 'form-control', required: :true, maxlength: 6
+  .form-group
+    = form.label :name
+    = form.text_field :name, class: 'form-control', required: :true, maxlength: 50
+  .form-group
+    = form.label :semester
+    = form.text_field :semester, class: 'form-control', required: :true, maxlength: 10
+  .form-group
+    = form.label :catalog_data
+    = form.text_area :catalog_data, class: 'form-control', maxlength: 500
+  .form-group
+    = form.submit 'Add Course', class: 'btn btn-dark'

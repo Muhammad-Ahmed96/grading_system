@@ -1,0 +1,15 @@
+
+.row
+  .col-lg-4.offset-lg-4
+    %h1.text-center=@course.name
+    .card
+      .card-header.text-center
+        %h1 Add Assessment
+      .card-body
+        #assessments
+          =form_for @course do |f|
+            =f.fields_for :assessments do |as|
+              =render 'assessment_fields', f: as
+            .links
+              = link_to_add_association 'Add Assessment', f, :assessments
+            =f.submit 'Save', class: 'btn btn-info float-right'

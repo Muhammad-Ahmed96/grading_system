@@ -1,0 +1,22 @@
+%h1=@course.name
+= link_to 'Add Student', new_student_path(@course), class: 'btn btn-primary mb-2'
+%table.table.table-bordered.table-hover
+  %thead.thead-dark
+    %tr
+      %th Name
+      %th Surname
+      %th Email
+      %th{:colspan => "3"}
+  %tbody
+    -if @students.present?
+      - @students.each do |user|
+        %tr
+          %td= user.name
+          %td= user.surname
+          %td= user.email
+          %td= link_to 'Remove Student', remove_student_path(student_id: user.id, id: @course.id), data: { confirm: 'Are you sure?' }
+          %td= link_to 'View Grades', view_grades_path(id: user.id, course_id: @course.id)
+    -else
+      %tr
+        %td{colspan: 6}="No Students Enrolled till now."
+%br/

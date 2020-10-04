@@ -1,0 +1,17 @@
+
+.row
+  .col-lg-4.offset-lg-4
+    .card.card-default
+      .card-header.text-center
+        %h2 Log in
+      .card-body
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .form-group
+            = f.label :email
+            = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
+          .form-group
+            = f.label :password
+            = f.password_field :password, autocomplete: "current-password", class: 'form-control'
+          .actions
+            = f.submit "Log in", class: 'btn btn-primary'
+        = render "devise/shared/links"

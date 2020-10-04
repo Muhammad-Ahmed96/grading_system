@@ -1,0 +1,13 @@
+
+.nested-fields
+  .row
+    .col-lg-5
+      =f.label :name
+      =f.text_field :name, class: 'form-control', requried: true, maxlength:30
+    .col-lg-5
+      =f.label :weight
+      =f.number_field :weight, class: 'form-control', min:0, max: 1, step: :any
+    .col-lg-2{style: 'display:flex;align-items:center'}
+      %br/
+      %br/
+      = link_to_remove_association "X", f

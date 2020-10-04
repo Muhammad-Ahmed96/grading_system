@@ -1,0 +1,22 @@
+
+
+%h1="#{@course.name} Assessment Details Sheet"
+
+%table.table.table-bordered.tabled-hover
+  %thead.thead-dark
+    %tr
+      %th Assessment Name
+      %th Min Grade
+      %th Avg Grade
+      %th Max Grade
+  %tbody
+    -@assessments.each do |as|
+      %tr
+        %td=as.name
+        -assessments = AssessmentGrade.where(assessment_id: as.id)
+        -max_grade = assessments.maximum('grade');
+        -avg_grade = assessments.average('grade');
+        -min_grade = assessments.minimum('grade');
+        %td="%.2f" % min_grade
+        %td="%.2f" % avg_grade
+        %td="%.2f" % max_grade

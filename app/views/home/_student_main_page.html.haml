@@ -1,0 +1,17 @@
+%h1 Welcome to the Student Page
+
+.row
+  -@courses.each do |course|
+    .col-lg-3
+      .card
+        .card-body
+          %h3=course.name
+          -c_as = course.assessments
+          -total = 0.0
+          -if c_as.present?
+            -c_as.each do |as|
+              -ag = AssessmentGrade.find_by(user_id: current_user.id, assessment_id: as.id)
+              -total = total + ((as.weight/100)*ag.grade) if as&.weight&.present? and ag&.grade&.present?
+          %h4="Grade = #{total.to_f}"
+          = link_to 'view details', view_grades_details_path(id: current_user.id, course_id: course.id), class: 'btn btn-danger'
+  

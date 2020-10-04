@@ -1,0 +1,28 @@
+
+= render "devise/shared/error_messages", resource: @user
+.form-group
+  = f.label :name
+  = f.text_field :name, class: 'form-control', required: true, maxlength: 30
+.form-group
+  = f.label :surname
+  = f.text_field :surname, class: 'form-control', required: true, maxlength: 30
+.form-group
+  = f.label :email
+  %br/
+  = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', required: true
+.form-group
+  -# = f.label 'Type'
+  -# = f.select :user_type, options_for_select(User.user_types.map {|u| [u[0],u[0]]},selected: 'student'),{}, {class: 'form-control', required: :true, readonly: true}
+  =f.hidden_field :user_type, value: 'student'
+.form-group
+  = f.label :password
+  - if @minimum_password_length
+    %em
+      (#{@minimum_password_length} characters minimum)
+  %br/
+  -if @user.new_record?
+    = f.password_field :password, autocomplete: "new-password", class: 'form-control', required: true, minlength: 8
+  -else
+    = f.password_field :password, value: @user.password, autocomplete: "new-password", class: 'form-control', minlength: 8
+.form-group
+  = f.submit @user.new_record? ? "Add Student" : 'Update Student', class: 'btn btn-success'

@@ -1,0 +1,24 @@
+
+%h1="Add Student to #{@course.name} Course"
+%table.table.table-bordered.table-hover
+  %thead.thead-dark
+    %tr
+      %th Name
+      %th Surname
+      %th Email
+      %th{:colspan => "3"}
+  %tbody
+    -if @students.present?
+      - @students.each do |user|
+        %tr
+          %td= user.name
+          %td= user.surname
+          %td= user.email
+          -if user.course_ids.include?(@course.id)
+            %td= link_to 'Enrolled', add_student_path(params[:id], student_id: user.id), class: 'btn btn-default border disabled', id: "student-#{user.id}", remote: :true
+          -else
+            %td= link_to 'Add to Course', add_student_path(params[:id], student_id: user.id), class: 'btn btn-default border', id: "student-#{user.id}", remote: :true
+    -else
+      %tr
+        %td{colspan: 6}="No Students Enrolled till now."
+%br/

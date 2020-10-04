@@ -1,0 +1,9 @@
+
+.row
+  .col-lg-4.offset-lg-4
+    .card.card-default
+      .card-header
+        %h1 New Course
+      .card-body
+        = render 'form', course: @course
+        = link_to 'Back', courses_path

@@ -1,0 +1,22 @@
+
+
+.row
+  .col-lg-4.offset-lg-4
+    .card.card-default
+      .card-header
+        %h1.text-center Grades Detail
+      .card-body
+        %table.table.table-borderd.table-hover
+          %thead.thead-dark
+            %tr
+              %th="Name"
+              %th="Grade"
+              %th="Weight"
+          %tbody
+            -@as_grades.each do |as|
+              %tr
+                %td
+                  =as.assessment.name
+                %td
+                  =as.grade
+                %td="#{as.assessment.weight} %"
