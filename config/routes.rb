@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :users, path: 'auth'
   resources :users, except: [:destroy, :sign_in, :show]
   delete 'delete_user/:id', to: 'users#delete_user', as: 'delete_user'
   get 'show_user/:id', to: 'users#show_user', as: 'show_user'
-  devise_for :users
   resources :assessments
   resources :courses
   root 'home#welcome'
