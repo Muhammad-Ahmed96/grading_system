@@ -12,4 +12,20 @@
               =render 'assessment_fields', f: as
             .links
               = link_to_add_association 'Add Assessment', f, :assessments
-            =f.submit 'Save', class: 'btn btn-info float-right'
+            %span.error
+            =f.submit 'Save', class: 'btn btn-info float-right', onclick: 'return validateWeight(event)'
+
+:javascript
+  function validateWeight(event){
+    sum = 0
+    $('.weight').each((i,v) => {
+        sum += parseFloat($(v).val());
+    });
+    debugger
+    if (sum > 1){
+      $('.error').html("The sum of all the weights should be less than or equal to 1 ")
+      event.preventDefault();
+      return false;
+    }
+    return true;
+  }
